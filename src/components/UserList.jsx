@@ -2,15 +2,22 @@ import React from "react";
 import Button from "./layoutComps/Button";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser } from "../slices/userSlice";
 
 const UserList = () => {
+  const dispatch = useDispatch();
   const users = useSelector((store) => store.users);
 
   const navigate = useNavigate();
 
   const handleNewUser = () => {
     navigate("/add-user");
+  };
+
+  const handleDeleteUser = (id) => {
+    console.log(id);
+    dispatch(deleteUser({ id }));
   };
 
   const renderCards = () =>
@@ -45,7 +52,7 @@ const UserList = () => {
             </button>
           </Link>
 
-          <button>
+          <button onClick={() => handleDeleteUser(user.id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -68,7 +75,7 @@ const UserList = () => {
   return (
     <div className="space-y-8">
       <Button onClick={handleNewUser}>New User</Button>
-      {users ? (
+      {users.length ? (
         <div className="grid grid-cols-2 gap-6 border-t border-gray-300 pt-6">
           {renderCards()}
         </div>
