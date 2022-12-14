@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./layoutComps/Button";
 
 const UserList = () => {
   const users = [

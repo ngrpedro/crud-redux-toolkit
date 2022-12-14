@@ -1,4 +1,5 @@
-import Button from "./components/Button";
+import { Route, Routes } from "react-router";
+import AddUser from "./components/AddUser";
 import UserList from "./components/UserList";
 
 function App() {
@@ -7,7 +8,10 @@ function App() {
       <h1 className="text-3xl text-blue-900 font-bold text-center">
         Hello Fucking Redux
       </h1>
-      <UserList />
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/add-user" element={<AddUser />} />
+      </Routes>
     </div>
   );
 }
