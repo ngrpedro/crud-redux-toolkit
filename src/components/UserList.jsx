@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 const UserList = () => {
   const users = [
@@ -56,9 +57,12 @@ const UserList = () => {
     ));
 
   return (
-    <div>
+    <div className="space-y-8">
+      <Button>New User</Button>
       {users.length ? (
-        <div className="grid grid-cols-2 gap-6">{renderCards()}</div>
+        <div className="grid grid-cols-2 gap-6 border-t border-gray-300 pt-6">
+          {renderCards()}
+        </div>
       ) : (
         <div>No Users Found</div>
       )}
