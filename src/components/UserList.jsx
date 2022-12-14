@@ -16,7 +16,6 @@ const UserList = () => {
   };
 
   const handleDeleteUser = (id) => {
-    console.log(id);
     dispatch(deleteUser({ id }));
   };
 
@@ -75,13 +74,15 @@ const UserList = () => {
   return (
     <div className="space-y-8">
       <Button onClick={handleNewUser}>New User</Button>
-      {users.length ? (
-        <div className="grid grid-cols-2 gap-6 border-t border-gray-300 pt-6">
-          {renderCards()}
-        </div>
-      ) : (
-        <div>No Users Found</div>
-      )}
+      <div className="border-t border-gray-300 pt-6">
+        {users.length ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {renderCards()}
+          </div>
+        ) : (
+          <div className="text-center">No Users Found</div>
+        )}
+      </div>
     </div>
   );
 };
