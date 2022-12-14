@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "./layoutComps/Button";
 import TextField from "./layoutComps/TextField";
+import { useSelector } from "react-redux";
 
 const EditUser = () => {
+  const params = useParams();
   const navigate = useNavigate();
+  const users = useSelector((store) => store.users);
+
+  const existingUser = users.filter((user) => user.id === params.id);
+  const { name, email } = existingUser[0];
+
   const [values, setValues] = useState({
-    name: "",
-    email: "",
+    name,
+    email,
   });
 
   const handleEditUser = () => {
