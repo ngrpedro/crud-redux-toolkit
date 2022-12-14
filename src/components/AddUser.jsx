@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { addUser } from "../slices/userSlice";
 import Button from "./layoutComps/Button";
 import TextField from "./layoutComps/TextField";
+import { v4 as uuidv4 } from "uuid";
 
 const AddUser = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const AddUser = () => {
   const handleAddUser = () => {
     dispatch(
       addUser({
-        id: "3",
+        id: uuidv4(),
         name: values.name,
         email: values.email,
       })

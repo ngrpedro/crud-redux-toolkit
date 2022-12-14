@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const UserList = () => {
   const users = useSelector((store) => store.users);
-  console.log(users);
 
   const navigate = useNavigate();
 
