@@ -27,7 +27,7 @@ const UserList = () => {
           </span>
         </div>
         <div className="flex items-center flex-col gap-4 pl-4">
-          <Link to={`/add-user/${user.id}`}>
+          <Link to={`/edit-user/${user.id}`}>
             <button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

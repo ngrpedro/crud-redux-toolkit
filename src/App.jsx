@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import AddUser from "./components/AddUser";
+import EditUser from "./components/EditUser";
 import UserList from "./components/UserList";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<UserList />} />
         <Route path="/add-user" element={<AddUser />} />
-        <Route path="/add-user/:id" element={<AddUser />} />
+        <Route path="/edit-user/:id" element={<EditUser />} />
       </Routes>
     </div>
   );
