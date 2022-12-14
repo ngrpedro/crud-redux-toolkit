@@ -2,13 +2,13 @@ import React from "react";
 import Button from "./layoutComps/Button";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserList = () => {
+  const users = useSelector((store) => store.users);
+  console.log(users);
+
   const navigate = useNavigate();
-  const users = [
-    { id: "1", name: "Pedro", email: "pedro@gmail.com" },
-    { id: "2", name: "Pedro", email: "pedro@gmail.com" },
-  ];
 
   const handleNewUser = () => {
     navigate("/add-user");
@@ -69,7 +69,7 @@ const UserList = () => {
   return (
     <div className="space-y-8">
       <Button onClick={handleNewUser}>New User</Button>
-      {users.length ? (
+      {users ? (
         <div className="grid grid-cols-2 gap-6 border-t border-gray-300 pt-6">
           {renderCards()}
         </div>
