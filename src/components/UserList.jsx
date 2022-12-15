@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./layoutComps/Button";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser } from "../slices/userSlice";
+import { deleteUser, fetchUsers } from "../slices/userSlice";
 
 const UserList = () => {
-  const dispatch = useDispatch();
-  const users = useSelector((store) => store.users);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
+  console.log(users);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
 
   const handleNewUser = () => {
     navigate("/add-user");

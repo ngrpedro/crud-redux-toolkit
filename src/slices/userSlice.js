@@ -1,9 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = [
-  { id: "1", name: "Pedro", email: "pedro@gmail.com" },
-  { id: "2", name: "Paula", email: "paula@gmail.com" },
-];
+const initialState = {
+  loading: false,
+  users: {},
+  error: "",
+};
+
+export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
+  return axios.get("http://localhost:3000/users").then((resp) => resp.data);
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -23,11 +29,26 @@ const userSlice = createSlice({
 
     deleteUser: (state, action) => {
       const { id } = action.payload;
-      const existingUser = state.find((user) => user.id === id);
+      const existingUser = state.users.find((user) => user.id === id);
       if (existingUser) {
         return state.filter((user) => user.id !== id);
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUsers.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+      state.error = "";
+    });
+    builder.addCase(fetchUsers.rejected, (state, action) => {
+      state.loading = false;
+      state.users = [];
+      state.error = action.payload;
+    });
   },
 });
 
