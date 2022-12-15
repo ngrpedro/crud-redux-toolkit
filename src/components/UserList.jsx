@@ -8,8 +8,7 @@ import { deleteUser, fetchUsers } from "../slices/userSlice";
 const UserList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
-  console.log(users);
+  const { users, loading, error } = useSelector((state) => state.users);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -20,7 +19,7 @@ const UserList = () => {
   };
 
   const handleDeleteUser = (id) => {
-    dispatch(deleteUser({ id }));
+    dispatch(deleteUser(id));
   };
 
   const renderCards = () =>
@@ -79,13 +78,17 @@ const UserList = () => {
     <div className="space-y-8">
       <Button onClick={handleNewUser}>New User</Button>
       <div className="border-t border-gray-300 pt-6">
-        {users.length ? (
+        {loading && <div className="text-center">Loading Users</div>}
+
+        {!loading && error ? (
+          <div className="text-center">Some Error</div>
+        ) : null}
+
+        {!loading && users.length ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {renderCards()}
           </div>
-        ) : (
-          <div className="text-center">No Users Found</div>
-        )}
+        ) : null}
       </div>
     </div>
   );

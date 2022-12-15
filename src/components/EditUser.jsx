@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "./layoutComps/Button";
 import TextField from "./layoutComps/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser } from "../slices/userSlice";
 
 const EditUser = () => {
   const params = useParams();
@@ -20,13 +19,12 @@ const EditUser = () => {
   });
 
   const handleEditUser = () => {
-    dispatch(
-      editUser({
+    dispatch();
+    /*editUser({
         id: params.id,
         name: values.name,
         email: values.email,
-      })
-    );
+      }) */
     navigate("/");
   };
 
