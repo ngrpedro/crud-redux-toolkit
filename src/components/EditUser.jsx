@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "./layoutComps/Button";
 import TextField from "./layoutComps/TextField";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../slices/userSlice";
 
 const EditUser = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const users = useSelector((store) => store.users);
+  const { users } = useSelector((state) => state.users);
 
-  const existingUser = users.filter((user) => user.id === params.id);
-  const { name, email } = existingUser[0];
+  console.log(users);
 
-  const [values, setValues] = useState({
+  //const existingUser = users.filter((user) => user.id === params.id);
+  //const { name, email } = existingUser[0];
+
+  /* const [values, setValues] = useState({
     name,
     email,
-  });
+  }); */
 
   const handleEditUser = () => {
     dispatch();
@@ -48,7 +51,7 @@ const EditUser = () => {
           </svg>
         </Link>
       </div>
-      <TextField
+      {/*       <TextField
         label="Name"
         value={values.name}
         onChange={(e) => setValues({ ...values, name: e.target.value })}
@@ -66,7 +69,7 @@ const EditUser = () => {
           type: "email",
           placeholder: "jhondoe@gmail.com",
         }}
-      />
+      /> */}
 
       <Button onClick={handleEditUser}>Editar</Button>
     </div>
