@@ -9,6 +9,7 @@ const UserList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { users, loading, error } = useSelector((state) => state.users);
+  console.log(users);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -20,6 +21,7 @@ const UserList = () => {
 
   const handleDeleteUser = (id) => {
     dispatch(deleteUser(id));
+    dispatch(fetchUsers());
   };
 
   const renderCards = () =>

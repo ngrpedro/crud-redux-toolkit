@@ -9,6 +9,26 @@
             "id": 2,
             "name": "Paula",
             "email": "paula@gmail.com"
+        },
+        {
+            "id": 3,
+            "name": "Renato",
+            "email": "renato@gmail.com"
+        },
+        {
+            "id": 4,
+            "name": "Maiara",
+            "email": "maiara@gmail.com"
+        },
+        {
+            "id": 5,
+            "name": "Josué",
+            "email": "josue@gmail.com"
+        },
+        {
+            "id": 6,
+            "name": "Alex",
+            "email": "alex@gmail.com"
         }
     ]
 }

@@ -3,18 +3,17 @@ import axios from "axios";
 
 const initialState = {
   loading: false,
-  users: {},
+  users: [],
   error: "",
 };
 
-export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-  const resp = await axios.get("http://localhost:3000/users");
-  return resp.data;
+export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
+  return axios.get("http://localhost:3000/users").then((res) => res.data);
 });
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
-  const resp = await axios.delete(`http://localhost:3000/users/${id}`);
-  return resp.data;
+  const res = await axios.delete(`http://localhost:3000/users/${id}`);
+  return res.data;
 });
 
 const userSlice = createSlice({
@@ -59,7 +58,6 @@ const userSlice = createSlice({
     });
     builder.addCase(deleteUser.fulfilled, (state, action) => {
       state.loading = false;
-      state.users = action.payload;
       state.error = "";
     });
     builder.addCase(deleteUser.rejected, (state, action) => {
